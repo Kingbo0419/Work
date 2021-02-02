@@ -1,0 +1,679 @@
+<CreateAccountWindow>:
+    name: "create"
+
+    namee: namee
+    email: email
+    password: passw
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text: "Create an Account"
+                size_hint: 0.8, 0.2
+                pos_hint: {"x":0.1, "top":1}
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8}
+                text: "Name: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8}
+                size_hint: 0.4, 0.12
+                id: namee
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8-0.13}
+                text: "Email: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13}
+                size_hint: 0.4, 0.12
+                id: email
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8-0.13*2}
+                text: "Password: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13*2}
+                size_hint: 0.4, 0.12
+                id: passw
+                multiline: False
+                password: True
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+        Button:
+            pos_hint:{"x":0.3,"y":0.25}
+            size_hint: 0.4, 0.1
+            font_size: (root.width**2 + root.height**2) / 17**4
+            text: "Already have an Account? Log In"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.login()
+
+        Button:
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.15
+            text: "Submit"
+            font_size: (root.width**2 + root.height**2) / 14**4
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit()
+
+
+<LoginWindow>:
+    name: "login"
+
+    email: email
+    password: password
+
+    FloatLayout:
+
+        Label:
+            text:"Username: "
+            font_size: (root.width**1 + root.height**1) / 13**1.5
+            pos_hint: {"x":0.1, "top":0.9}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: email
+            font_size: (root.width**1 + root.height**1) / 13**1.5
+            multiline: False
+            pos_hint: {"x": 0.45 , "top":0.9}
+            size_hint: 0.4, 0.15
+
+        Label:
+            text:"Password: "
+            font_size: (root.width**1 + root.height**1) / 13**1.5
+            pos_hint: {"x":0.1, "top":0.7}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: password
+            font_size: (root.width**1 + root.height**1) / 13**1.5
+            multiline: False
+            password: True
+            pos_hint: {"x": 0.45, "top":0.7}
+            size_hint: 0.4, 0.15
+
+        Button:
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.2
+            font_size: (root.width**1 + root.height**1) / 13**1.5
+            text: "Login"
+            on_release:
+                root.manager.transition.direction = "up"
+                root.loginBtn()
+
+        Button:
+            pos_hint:{"x":0.3,"y":0.3}
+            size_hint: 0.4, 0.1
+            font_size: (root.width**1 + root.height**1) / 17**1.5
+            text: "Don't have an Account? Create One"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.createBtn()
+<SecondWindow>:
+    name: "sport"
+    FloatLayout:
+        Button:
+            text: "NFL"
+            size_hint: 0.8,0.2
+            pos_hint:{"y":0.6,"x":0.1}
+            on_release:
+                app.root.current = "NFL"
+
+<MainWindow>:
+    FloatLayout:
+        Button:
+            pos_hint:{"x":0.3,"top":0.4}
+            size_hint:0.4,0.1
+            text: "Account Info"
+            on_release:
+                root.accountBtn()
+                root.manager.transition.direction = "right"
+        Button:
+            pos_hint:{"x":0.3, "top": 0.2}
+            size_hint:0.4,0.1
+            text: "Log Out"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+        Button:
+            text: "Sport Selection"
+            size_hint: 0.4,0.1
+            pos_hint:{"x":0.3,"top": 0.3}
+            on_release:
+                root.sportBtn()
+                root.manager.transition.direction = "left"
+
+<AccountWindow>:
+    nameee: "account"
+    n: n
+    email: email
+    created:created
+
+    FloatLayout:
+        Label:
+            id: n
+            pos_hint:{"x": 0.1, "top":0.9}
+            size_hint:0.8, 0.2
+            text: "Account Name: "
+
+        Label:
+            id: email
+            pos_hint:{"x": 0.1, "top":0.7}
+            size_hint:0.8, 0.2
+            text: "Email: "
+
+        Label:
+            id: created
+            pos_hint:{"x": 0.1, "top":0.5}
+            size_hint:0.8, 0.2
+            text: "Created: "
+
+        Button:
+            pos_hint:{"x":0.3, "top": 0.2}
+            size_hint:0.4,0.1
+            text: "Log Out"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+        Button:
+            pos_hint:{"x":0.3,"top":0.3}
+            size_hint:0.4,0.1
+            text:"Back"
+            on_release:
+                root.mainBtn()
+                root.manager.transition.direction = "up"
+
+<NFLWindow>:
+    name: "NFL"
+    FloatLayout:
+        Label:
+            text: "AFC Teams"
+            pos_hint:{"x":0.1, "top":0.95}
+            size_hint:0.8,0.1
+
+        Label:
+            text: "Please Select Team 1"
+            font_size: 20
+            pos_hint:{"x":0.1, "top":1}
+            size_hint:0.8,0.1
+
+        Button:
+            text: "New York Jets"
+            pos_hint:{"x":0.1, "top":0.85}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Buffalo Bills"
+            pos_hint:{"x":0.1, "top":0.8}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "New England Patriots"
+            pos_hint:{"x":0.1, "top":0.75}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Miami Dolphins"
+            pos_hint:{"x":0.1, "top":0.7}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Kansas City Chiefs"
+            pos_hint:{"x":0.1, "top":0.65}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Las Vegas Raiders"
+            pos_hint:{"x":0.1, "top":0.6}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Los Angeles Chargers"
+            pos_hint:{"x":0.1, "top":0.55}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Denver Broncos"
+            pos_hint:{"x":0.1, "top":0.5}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Pittsburgh Steelers"
+            pos_hint:{"x":0.1, "top":0.45}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Baltimore Ravens"
+            pos_hint:{"x":0.1, "top":0.4}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Cincinnati Bengals"
+            pos_hint:{"x":0.1, "top":0.35}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Cleveland Browns"
+            pos_hint:{"x":0.1, "top":0.3}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Tennessee Titans"
+            pos_hint:{"x":0.1, "top":0.25}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Indianapolis Colts"
+            pos_hint:{"x":0.1, "top":0.2}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Houston Texans"
+            pos_hint:{"x":0.1, "top":0.15}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Jacksonville Jaguars"
+            pos_hint:{"x":0.1, "top":0.1}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Next"
+            pos_hint:{"x":0.5,"top":0.05}
+            size_hint:0.5,0.05
+            on_release:
+                root.nextBtn()
+                root.manager.transition.direction = "up"
+
+        Button:
+            text: "Back"
+            pos_hint:{"x":0, "top":0.05}
+            size_hint:0.5,0.05
+            on_release:
+                root.mainBtn()
+                root.manager.transition.direction = "down"
+
+<NFCWindow>
+    name: "NFC"
+    FloatLayout:
+        Label:
+            text: "NFC Teams"
+            pos_hint:{"x":0.1, "top":0.95}
+            size_hint:0.8,0.1
+
+        Label:
+            text: "Please Select Team 1"
+            font_size: 20
+            pos_hint:{"x":0.1, "top":1}
+            size_hint:0.8,0.1
+
+        Button:
+            text: "Atlanta Falcons"
+            pos_hint:{"x":0.1, "top":0.85}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Carolina Panthers"
+            pos_hint:{"x":0.1, "top":0.8}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "New Orleans Saints"
+            pos_hint:{"x":0.1, "top":0.75}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Tampa Bay Buccaneers"
+            pos_hint:{"x":0.1, "top":0.7}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Green Bay Packers"
+            pos_hint:{"x":0.1, "top":0.65}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Detroit Lions"
+            pos_hint:{"x":0.1, "top":0.6}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Minnesota Vikings"
+            pos_hint:{"x":0.1, "top":0.55}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Chicago Bears"
+            pos_hint:{"x":0.1, "top":0.5}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Seattle Seahawks"
+            pos_hint:{"x":0.1, "top":0.45}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Los Angeles Rams"
+            pos_hint:{"x":0.1, "top":0.4}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "San Francisco 49ers"
+            pos_hint:{"x":0.1, "top":0.35}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Arizona Cardinals"
+            pos_hint:{"x":0.1, "top":0.3}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "New York Giants"
+            pos_hint:{"x":0.1, "top":0.25}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Washington Football Team"
+            pos_hint:{"x":0.1, "top":0.2}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Philadelphia Eagles"
+            pos_hint:{"x":0.1, "top":0.15}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Dallas Cowboys"
+            pos_hint:{"x":0.1, "top":0.1}
+            size_hint:0.8,0.05
+            on_release:
+                root.teamBtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Next"
+            pos_hint:{"x":0.5,"top":0.05}
+            size_hint:0.5,0.05
+            on_release:
+                root.nextBtn()
+                root.manager.transition.direction = "down"
+
+        Button:
+            text: "Back"
+            pos_hint:{"x":0, "top":0.05}
+            size_hint:0.5,0.05
+            on_release:
+                root.mainBtn()
+                root.manager.transition.direction = "up"
+<NFLWindow2>:
+    name: "NFL2"
+    FloatLayout:
+        Label:
+            text: "AFC Teams"
+            pos_hint:{"x":0.1, "top":0.95}
+            size_hint:0.8,0.1
+
+        Label:
+            text: "Please Select Team 2"
+            font_size: 20
+            pos_hint:{"x":0.1, "top":1}
+            size_hint:0.8,0.1
+
+        Button:
+            text: "New York Jets"
+            pos_hint:{"x":0.1, "top":0.85}
+            size_hint:0.8,0.05
+        Button:
+            text: "Buffalo Bills"
+            pos_hint:{"x":0.1, "top":0.8}
+            size_hint:0.8,0.05
+        Button:
+            text: "New England Patriots"
+            pos_hint:{"x":0.1, "top":0.75}
+            size_hint:0.8,0.05
+        Button:
+            text: "Miami Dolphins"
+            pos_hint:{"x":0.1, "top":0.7}
+            size_hint:0.8,0.05
+        Button:
+            text: "Kansas City Chiefs"
+            pos_hint:{"x":0.1, "top":0.65}
+            size_hint:0.8,0.05
+        Button:
+            text: "Las Vegas Raiders"
+            pos_hint:{"x":0.1, "top":0.6}
+            size_hint:0.8,0.05
+        Button:
+            text: "Los Angeles Chargers"
+            pos_hint:{"x":0.1, "top":0.55}
+            size_hint:0.8,0.05
+        Button:
+            text: "Denver Broncos"
+            pos_hint:{"x":0.1, "top":0.5}
+            size_hint:0.8,0.05
+        Button:
+            text: "Pittsburgh Steelers"
+            pos_hint:{"x":0.1, "top":0.45}
+            size_hint:0.8,0.05
+        Button:
+            text: "Baltimore Ravens"
+            pos_hint:{"x":0.1, "top":0.4}
+            size_hint:0.8,0.05
+        Button:
+            text: "Cincinnati Bengals"
+            pos_hint:{"x":0.1, "top":0.35}
+            size_hint:0.8,0.05
+        Button:
+            text: "Cleveland Browns"
+            pos_hint:{"x":0.1, "top":0.3}
+            size_hint:0.8,0.05
+        Button:
+            text: "Tennessee Titans"
+            pos_hint:{"x":0.1, "top":0.25}
+            size_hint:0.8,0.05
+        Button:
+            text: "Indianapolis Colts"
+            pos_hint:{"x":0.1, "top":0.2}
+            size_hint:0.8,0.05
+        Button:
+            text: "Houston Texans"
+            pos_hint:{"x":0.1, "top":0.15}
+            size_hint:0.8,0.05
+        Button:
+            text: "Jacksonville Jaguars"
+            pos_hint:{"x":0.1, "top":0.1}
+            size_hint:0.8,0.05
+        Button:
+            text: "Next"
+            pos_hint:{"x":0.5,"top":0.05}
+            size_hint:0.5,0.05
+            on_release:
+                root.nextBtn()
+                root.manager.transition.direction = "up"
+
+        Button:
+            text: "Back"
+            pos_hint:{"x":0, "top":0.05}
+            size_hint:0.5,0.05
+            on_release:
+                root.mainBtn()
+                root.manager.transition.direction = "right"
+
+<NFCWindow2>
+    name: "NFC2"
+    FloatLayout:
+        Label:
+            text: "NFC Teams"
+            pos_hint:{"x":0.1, "top":0.95}
+            size_hint:0.8,0.1
+
+        Label:
+            text: "Please Select Team 2"
+            font_size: 20
+            pos_hint:{"x":0.1, "top":1}
+            size_hint:0.8,0.1
+
+        Button:
+            text: "Atlanta Falcons"
+            pos_hint:{"x":0.1, "top":0.85}
+            size_hint:0.8,0.05
+        Button:
+            text: "Carolina Panthers"
+            pos_hint:{"x":0.1, "top":0.8}
+            size_hint:0.8,0.05
+        Button:
+            text: "New Orleans Saints"
+            pos_hint:{"x":0.1, "top":0.75}
+            size_hint:0.8,0.05
+        Button:
+            text: "Tampa Bay Buccaneers"
+            pos_hint:{"x":0.1, "top":0.7}
+            size_hint:0.8,0.05
+        Button:
+            text: "Green Bay Packers"
+            pos_hint:{"x":0.1, "top":0.65}
+            size_hint:0.8,0.05
+        Button:
+            text: "Detroit Lions"
+            pos_hint:{"x":0.1, "top":0.6}
+            size_hint:0.8,0.05
+        Button:
+            text: "Minnesota Vikings"
+            pos_hint:{"x":0.1, "top":0.55}
+            size_hint:0.8,0.05
+        Button:
+            text: "Chicago Bears"
+            pos_hint:{"x":0.1, "top":0.5}
+            size_hint:0.8,0.05
+        Button:
+            text: "Seattle Seahawks"
+            pos_hint:{"x":0.1, "top":0.45}
+            size_hint:0.8,0.05
+        Button:
+            text: "Los Angeles Rams"
+            pos_hint:{"x":0.1, "top":0.4}
+            size_hint:0.8,0.05
+        Button:
+            text: "San Francisco 49ers"
+            pos_hint:{"x":0.1, "top":0.35}
+            size_hint:0.8,0.05
+        Button:
+            text: "Arizona Cardinals"
+            pos_hint:{"x":0.1, "top":0.3}
+            size_hint:0.8,0.05
+        Button:
+            text: "New York Giants"
+            pos_hint:{"x":0.1, "top":0.25}
+            size_hint:0.8,0.05
+        Button:
+            text: "Washington Football Team"
+            pos_hint:{"x":0.1, "top":0.2}
+            size_hint:0.8,0.05
+        Button:
+            text: "Philadelphia Eagles"
+            pos_hint:{"x":0.1, "top":0.15}
+            size_hint:0.8,0.05
+        Button:
+            text: "Dallas Cowboys"
+            pos_hint:{"x":0.1, "top":0.1}
+            size_hint:0.8,0.05
+        Button:
+            text: "Next"
+            pos_hint:{"x":0.5,"top":0.05}
+            size_hint:0.5,0.05
+            on_release:
+                root.nextBtn()
+                root.manager.transition.direction = "down"
+
+        Button:
+            text: "Back"
+            pos_hint:{"x":0, "top":0.05}
+            size_hint:0.5,0.05
+            on_release:
+                root.mainBtn()
+                root.manager.transition.direction = "down"
+
+
+
+
+
